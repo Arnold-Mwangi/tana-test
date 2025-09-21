@@ -4,6 +4,9 @@ import com.assignment.solutions.GetLongestString;
 import com.assignment.solutions.FirstUniqueProduct;
 import com.assignment.solutions.ClosestMinimums;
 import com.assignment.solutions.CommonWords;
+import com.assignment.solutions.RotateList;
+import java.util.LinkedList;
+import java.util.Arrays;
 
 /**
  * Main runner class for the  solutions.
@@ -29,8 +32,8 @@ public class AssignmentRunner {
         // Demonstrate CommonWords
         demonstrateCommonWords();
         
-        // TODO: Add demonstrations for other 1 solution as it is implemented
-        // demonstrateSolution5();
+        // Demonstrate RotateList
+        demonstrateRotateList();
         
         System.out.println("=== Demo Complete ===");
         System.out.println("Run the JUnit tests for thorough validation of all edge cases.");
@@ -128,6 +131,35 @@ public class AssignmentRunner {
         System.out.println("     sentence = \"" + sentence3 + "\"");
         System.out.println("     result = " + java.util.Arrays.toString(result3));
         System.out.println("   ✓ Returns top 3 most frequent words in alphabetical order\n");
+    }
+    
+    private static void demonstrateRotateList() {
+        System.out.println("5. RotateList Solution:");
+        System.out.println("   Problem: Rotate a LinkedList n times to the right");
+        
+        // Example from the problem description
+        LinkedList<String> list1 = new LinkedList<>(Arrays.asList("ID_A01", "ID_A02", "ID_A03", "ID_A04", "ID_A05", "ID_A06"));
+        LinkedList<String> original1 = new LinkedList<>(list1);
+        LinkedList<String> result1 = RotateList.rotateRight(list1, 2);
+        
+        System.out.println("   Example Usage:");
+        System.out.println("     original = " + original1);
+        System.out.println("     rotate right by 2 = " + result1);
+        
+        // Additional example - simple case
+        LinkedList<String> list2 = new LinkedList<>(Arrays.asList("A", "B", "C", "D"));
+        LinkedList<String> original2 = new LinkedList<>(list2);
+        LinkedList<String> result2 = RotateList.rotateRight(list2, 1);
+        System.out.println("     original = " + original2);
+        System.out.println("     rotate right by 1 = " + result2);
+        
+        // Example with negative rotation (left rotation)
+        LinkedList<String> list3 = new LinkedList<>(Arrays.asList("X", "Y", "Z"));
+        LinkedList<String> original3 = new LinkedList<>(list3);
+        LinkedList<String> result3 = RotateList.rotateRight(list3, -1);
+        System.out.println("     original = " + original3);
+        System.out.println("     rotate left by 1 (n=-1) = " + result3);
+        System.out.println("   ✓ Rotates LinkedList right by n positions (negative n rotates left)\n");
     }
     
     // Template methods for other solutions
