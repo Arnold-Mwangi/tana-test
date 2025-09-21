@@ -2,6 +2,7 @@ package com.assignment;
 
 import com.assignment.solutions.GetLongestString;
 import com.assignment.solutions.FirstUniqueProduct;
+import com.assignment.solutions.ClosestMinimums;
 
 /**
  * Main runner class for the  solutions.
@@ -21,8 +22,10 @@ public class AssignmentRunner {
         // Demonstrate FirstUniqueProduct
         demonstrateFirstUniqueProduct();
         
-        // TODO: Add demonstrations for other 3 solutions as they are implemented
-        // demonstrateSolution3();
+        // Demonstrate ClosestMinimums
+        demonstrateClosestMinimums();
+        
+        // TODO: Add demonstrations for other 2 solutions as they are implemented
         // demonstrateSolution4();
         // demonstrateSolution5();
         
@@ -70,6 +73,32 @@ public class AssignmentRunner {
         System.out.println("     products = " + java.util.Arrays.toString(products3));
         System.out.println("     result = " + result3 + " (no unique product)");
         System.out.println("   ✓ Returns first unique product or null if none exists\n");
+    }
+    
+    private static void demonstrateClosestMinimums() {
+        System.out.println("3. ClosestMinimums Solution:");
+        System.out.println("   Problem: Find the distance between the two closest minimum values in an array");
+        
+        // Example from the problem description
+        int[] numbers1 = {1, 2, 3, 1, 4, 5, 2};
+        int result1 = ClosestMinimums.getClosestMinimums(numbers1);
+        
+        System.out.println("   Example Usage:");
+        System.out.println("     numbers = " + java.util.Arrays.toString(numbers1));
+        System.out.println("     result = " + result1 + " (distance between minimums at indices 0 and 3)");
+        
+        // Additional example - consecutive minimums
+        int[] numbers2 = {3, 1, 1, 4, 5};
+        int result2 = ClosestMinimums.getClosestMinimums(numbers2);
+        System.out.println("     numbers = " + java.util.Arrays.toString(numbers2));
+        System.out.println("     result = " + result2 + " (consecutive minimums)");
+        
+        // Example with negative numbers
+        int[] numbers3 = {-2, 5, -2, 3, 1};
+        int result3 = ClosestMinimums.getClosestMinimums(numbers3);
+        System.out.println("     numbers = " + java.util.Arrays.toString(numbers3));
+        System.out.println("     result = " + result3 + " (negative minimums)");
+        System.out.println("   ✓ Returns distance between closest pair of minimum values\n");
     }
     
     // Template methods for other solutions
