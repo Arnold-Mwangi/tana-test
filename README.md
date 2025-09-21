@@ -1,4 +1,4 @@
-# Tana Technical Assessment - Take Home Test
+# Tana Assessment
 
 **Programming Language:** Java 17  
 **Project Setup:** Maven with JUnit 5.9.2 for testing
