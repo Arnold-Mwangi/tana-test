@@ -3,6 +3,7 @@ package com.assignment;
 import com.assignment.solutions.GetLongestString;
 import com.assignment.solutions.FirstUniqueProduct;
 import com.assignment.solutions.ClosestMinimums;
+import com.assignment.solutions.CommonWords;
 
 /**
  * Main runner class for the  solutions.
@@ -25,8 +26,10 @@ public class AssignmentRunner {
         // Demonstrate ClosestMinimums
         demonstrateClosestMinimums();
         
-        // TODO: Add demonstrations for other 2 solutions as they are implemented
-        // demonstrateSolution4();
+        // Demonstrate CommonWords
+        demonstrateCommonWords();
+        
+        // TODO: Add demonstrations for other 1 solution as it is implemented
         // demonstrateSolution5();
         
         System.out.println("=== Demo Complete ===");
@@ -99,6 +102,32 @@ public class AssignmentRunner {
         System.out.println("     numbers = " + java.util.Arrays.toString(numbers3));
         System.out.println("     result = " + result3 + " (negative minimums)");
         System.out.println("   ✓ Returns distance between closest pair of minimum values\n");
+    }
+    
+    private static void demonstrateCommonWords() {
+        System.out.println("4. CommonWords Solution:");
+        System.out.println("   Problem: Find the top 3 most common words in a sentence (sorted alphabetically)");
+        
+        // Example from the problem description
+        String sentence1 = "hi there care to discuss algorithm basis or how to solve algorithm or";
+        String[] result1 = CommonWords.getTop3CommonWords(sentence1);
+        
+        System.out.println("   Example Usage:");
+        System.out.println("     sentence = \"" + sentence1 + "\"");
+        System.out.println("     result = " + java.util.Arrays.toString(result1));
+        
+        // Additional example - tie breaking
+        String sentence2 = "apple banana cherry apple banana cherry apple";
+        String[] result2 = CommonWords.getTop3CommonWords(sentence2);
+        System.out.println("     sentence = \"" + sentence2 + "\"");
+        System.out.println("     result = " + java.util.Arrays.toString(result2));
+        
+        // Example with case insensitive
+        String sentence3 = "Hello HELLO hello World WORLD world Test";
+        String[] result3 = CommonWords.getTop3CommonWords(sentence3);
+        System.out.println("     sentence = \"" + sentence3 + "\"");
+        System.out.println("     result = " + java.util.Arrays.toString(result3));
+        System.out.println("   ✓ Returns top 3 most frequent words in alphabetical order\n");
     }
     
     // Template methods for other solutions
