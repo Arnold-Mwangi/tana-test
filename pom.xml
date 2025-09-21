@@ -5,13 +5,13 @@
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.example</groupId>
-    <artifactId>take-home-tana-test</artifactId>
+    <groupId>com.assignment</groupId>
+    <artifactId>take-home-assignment</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>GetLongestString</name>
-    <description>A Java utility to find the longest valid string based on character constraints</description>
+    <name>Take Home Assignment</name>
+    <description>Collection of algorithmic solutions for take-home assignment</description>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -58,7 +58,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>GetLongestString</mainClass>
+                            <mainClass>com.assignment.AssignmentRunner</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

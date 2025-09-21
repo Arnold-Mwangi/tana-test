@@ -1,3 +1,5 @@
+package com.assignment.solutions;
+
 import java.util.*;
 
 public class GetLongestString {
