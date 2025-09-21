@@ -1,186 +1,129 @@
-# Take Home Assignment
+# Tana Technical Assessment - Take Home Test
 
-A collection of algorithmic solutions for coding assessment, structured as a professional Java project with Maven build system.
+**Programming Language:** Java 17  
+**Project Setup:** Maven with JUnit 5.9.2 for testing
 
-## 📁 Project Structure
+## Solutions Overview
 
+Each question has been solved in a clean, efficient, and maintainable way. I've also written unit tests to cover edge cases and ensure correctness.
+
+### Question 1 - GetLongestString.java
+**Problem:** Find longest string that contains only allowed characters and has no consecutive duplicates.
+
+**My approach:** I first convert the allowed characters into a HashSet for O(1) lookups. Then for each candidate string, I validate it character by character:
+
+- If any character is not in the set → reject it.
+- If it has two consecutive duplicates → reject it.
+- Among valid strings, I track the longest one. 
+
+This approach is simple and efficient (O(n * m) where m is string length).
+
+### Question 2 - FirstUniqueProduct.java  
+**Problem:** Find the first product that appears exactly once in the array.
+
+**My approach:** I use a LinkedHashMap which keeps insertion order while storing counts.
+
+- First pass: count occurrences.
+- Second pass: return the first key with count = 1.
+
+This ensures O(n) time with natural handling of order.
+
+### Question 3 - ClosestMinimums.java
+**Problem:** Find distance between the two closest minimum values in an array.
+
+**My approach:** Two-pass algorithm:
+
+- First pass: find the smallest number.
+- Second pass: iterate again to track indices of that minimum and compute smallest gap between two occurrences.
+- If the minimum occurs only once, return -1.
+
+This runs in linear time O(n) with O(1) extra space.
+
+### Question 4 - CommonWords.java
+**Problem:** Return top 3 most common words from a sentence, sorted alphabetically when tied.
+
+**My approach:** 
+
+- Normalize input to lowercase and split on regex `[^a-z0-9]+`.
+- Count occurrences using a HashMap.
+- Sort entries by frequency (desc) then alphabetically.
+- Handle ties by keeping all words with the same frequency and trimming to top 3 in alphabetical order.
+
+### Question 5 - RotateList.java
+**Problem:** Rotate a LinkedList n positions to the right.
+
+**My approach:** Instead of reimplementing rotation logic, I used Java's Collections.rotate() which is optimized for this.
+
+- First normalize n using modulo (n % size) so very large rotations wrap correctly.
+- Negative values are adjusted to equivalent right rotations.
+
+This makes the solution short, clean, and correct.
+
+## How to Run
+
+### Quick Demo (See all solutions working)
+```bash
+# Compile everything
+javac -cp target/classes -d target/classes src/main/java/com/assignment/**/*.java
+
+# Run the demo - shows examples of each solution
+java -cp target/classes com.assignment.AssignmentRunner
 ```
-take-home-assignment/
-├── src/
-│   ├── main/java/com/assignment/
-│   │   ├── AssignmentRunner.java          # Main runner for all solutions
-│   │   ├── solutions/                     # Individual solution classes
-│   │   │   ├── GetLongestString.java     # Solution 1: String validation
-│   │   │   ├── [Solution2].java          # TODO: Add solution 2
-│   │   │   ├── [Solution3].java          # TODO: Add solution 3
-│   │   │   ├── [Solution4].java          # TODO: Add solution 4
-│   │   │   └── [Solution5].java          # TODO: Add solution 5
-│   │   └── utils/
-│   │       └── TestDataGenerator.java    # Utility for generating test data
-│   └── test/java/com/assignment/solutions/
-│       ├── GetLongestStringTest.java     # Unit tests for solution 1
-│       └── [Additional test files...]    # Tests for other solutions
-├── pom.xml                               # Maven build configuration
-├── .gitignore                           # Git ignore rules
-└── README.md                            # This file
+
+### Run All Tests (Comprehensive validation)
+```bash
+# This runs all my test cases - hundreds of them covering edge cases
+mvn test
 ```
 
-## 🚀 Solutions Implemented
+### Manual compilation (if you don't have Maven)
+```bash
+# Compile main code
+javac -d target/classes src/main/java/com/assignment/**/*.java
 
-### 1. GetLongestString
-**Problem**: Find the longest valid string from an array based on character constraints.
+# Run the demo
+java -cp target/classes com.assignment.AssignmentRunner
+```
 
-**Features**:
-- Validates strings contain only allowed characters
-- Ensures no consecutive duplicate characters
-- Handles null inputs gracefully
-- Optimizes by skipping shorter strings
+## Test Coverage
 
-**Usage**:
+I've written comprehensive tests for each solution covering:
+
+- Basic functionality with the examples given
+- Edge cases (null inputs, empty arrays, boundary conditions)
+- Performance scenarios with large inputs
+- Error handling
+
+Each solution has its own test file in `src/test/java/com/assignment/solutions/` with multiple test methods. You can run individual test suites like:
+
+```bash
+mvn test -Dtest=GetLongestStringTest
+mvn test -Dtest=FirstUniqueProductTest
+```
+
+You can also extend testing by writing your own JUnit test classes, for example:
 ```java
-String characters = "abc";
-String[] strings = {"ab", "abc", "abcd", "aab", "bca"};
-String result = GetLongestString.getLongestString(characters, strings);
-// Returns "abc"
+@Test
+public void testRotateListWithEmptyList() {
+    LinkedList<String> list = new LinkedList<>();
+    LinkedList<String> result = RotateList.rotateRight(list, 5);
+    assertTrue(result.isEmpty());
+}
 ```
 
-### 2-5. Additional Solutions
-*TODO: Add descriptions as solutions are implemented*
 
-## 🛠️ Getting Started
+## Project Structure
 
-### Prerequisites
-- Java 11 or higher
-- Maven 3.6 or higher
+This is a proper Maven project with:
 
-### Building the Project
-```bash
-# Compile all sources
-mvn compile
+- `src/main/java` - All solution implementations
+- `src/test/java` - Comprehensive unit tests  
+- `AssignmentRunner.java` - Demo runner showing all solutions
+- `pom.xml` - Maven configuration with JUnit 5
 
-# Run all tests
-mvn test
+## Notes
 
-# Create executable JAR
-mvn package
-```
-
-### Running Solutions
-
-#### Option 1: Run the main runner (recommended)
-```bash
-# Run all solutions with demonstrations
-mvn exec:java -Dexec.mainClass="com.assignment.AssignmentRunner"
-
-# Or after building JAR
-java -jar target/take-home-assignment-1.0.0.jar
-```
-
-#### Option 2: Run individual solutions
-```bash
-# Compile and run specific solution
-mvn compile exec:java -Dexec.mainClass="com.assignment.solutions.GetLongestString"
-```
-
-#### Option 3: Run tests
-```bash
-# Run all tests
-mvn test
-
-# Run specific test class
-mvn test -Dtest=GetLongestStringTest
-```
-
-## 📊 Testing Strategy
-
-Each solution includes:
-- **Unit tests** with JUnit 5
-- **Edge case testing** (null inputs, empty arrays, etc.)
-- **Performance considerations** for large inputs
-- **Test data generation** utilities for consistent testing
-
-### Running Tests
-```bash
-# Run all tests with detailed output
-mvn test
-
-# Run tests for specific solution
-mvn test -Dtest=GetLongestStringTest
-
-# Generate test coverage report (if configured)
-mvn jacoco:report
-```
-
-## 🏗️ Development Guidelines
-
-### Adding New Solutions
-
-1. **Create the solution class**:
-   ```bash
-   # Create in src/main/java/com/assignment/solutions/
-   touch src/main/java/com/assignment/solutions/YourSolution.java
-   ```
-
-2. **Follow the template**:
-   ```java
-   package com.assignment.solutions;
-   
-   public class YourSolution {
-       public static ReturnType solutionMethod(InputType input) {
-           // Implementation here
-           return result;
-       }
-   }
-   ```
-
-3. **Add corresponding tests**:
-   ```bash
-   touch src/test/java/com/assignment/solutions/YourSolutionTest.java
-   ```
-
-4. **Update AssignmentRunner.java** to include your solution demonstration
-
-5. **Update this README** with solution description
-
-### Code Quality Standards
-- **Documentation**: All public methods must have JavaDoc
-- **Testing**: Minimum 80% test coverage expected
-- **Null Safety**: Handle null inputs gracefully
-- **Performance**: Consider time/space complexity
-- **Style**: Follow standard Java conventions
-
-## 🔧 Build Configuration
-
-- **Java Version**: 11
-- **Maven Version**: 3.11.0
-- **Testing Framework**: JUnit 5.9.2
-- **Main Class**: `com.assignment.AssignmentRunner`
-
-## 📈 Performance Considerations
-
-Each solution is designed with performance in mind:
-- Time complexity analysis included in JavaDoc
-- Space-efficient implementations
-- Early termination optimizations where applicable
-- Scalable for large input sizes
-
-## 🤝 Contributing
-
-When adding new solutions:
-1. Follow the established package structure
-2. Include comprehensive tests
-3. Add performance analysis
-4. Update documentation
-5. Test the AssignmentRunner integration
-
-## 📝 Assignment Checklist
-
-- [x] **Solution 1**: GetLongestString ✅
-- [ ] **Solution 2**: [TODO]
-- [ ] **Solution 3**: [TODO]
-- [ ] **Solution 4**: [TODO]
-- [ ] **Solution 5**: [TODO]
-- [x] **Project Structure**: Professional Maven setup ✅
-- [x] **Testing Framework**: JUnit 5 configured ✅
-- [x] **Documentation**: README and JavaDoc ✅
-- [x] **Build System**: Maven with proper configuration ✅
+- Code prioritizes clarity and maintainability over clever tricks.
+- Each solution is efficient in both time and space.
+- I used built-in Java utilities (HashMap, LinkedHashMap, Collections.rotate) where appropriate.
+- Tests are as important as implementations – they show confidence that edge cases are covered.
